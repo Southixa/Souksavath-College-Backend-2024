@@ -14,6 +14,7 @@ var con = mysql.createConnection({
   password: "XSspnA5R",
   port: "19990",
   database: "finalproject2024",
+  timezone: 'Z'
 });
 
 

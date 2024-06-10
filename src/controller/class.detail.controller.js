@@ -83,9 +83,9 @@ export default class ClassDetailController {
 
   static selectByFilter = async (req, res) => {
     try {
-      const { cUuid, mUuid } = req.params;
+      const { mUuid, cUuid, subUuid, pUuid } = req.body;
       const vaildate = await ValidateData({
-        cUuid, mUuid
+        mUuid, cUuid, subUuid, pUuid
       });
       if (vaildate.length > 0) {
         return sendError(res, 400, EMessage.PleaseInput + vaildate.join(","));
@@ -98,8 +98,8 @@ export default class ClassDetailController {
       INNER JOIN major ON class.major_id = major.mUuid
       INNER JOIN part ON class_detail.part_id = part.pUuid
       INNER JOIN subject ON class_detail.subject_id = subject.subUuid
-      INNER JOIN teacher ON subject.teacher_id = teacher.tUuid where cUuid = ? AND class.major_id = ?`;
-      con.query(mysql, [cUuid, mUuid],  function (err, data) {
+      INNER JOIN teacher ON subject.teacher_id = teacher.tUuid where cUuid = ? AND class.major_id = ? AND subject.subUuid = ? AND part.pUuid = ?`;
+      con.query(mysql, [cUuid, mUuid, subUuid, pUuid],  function (err, data) {
         if (err) return sendError(res, 500, EMessage.server, err);
         return sendSuccess(res, SMessage.selectAll, data);
       });

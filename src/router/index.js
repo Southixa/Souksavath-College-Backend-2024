@@ -62,7 +62,9 @@ route.delete("/year/delete/:yUuid",auth,YearController.deleteYear);
 route.get("/checklist/selectone/:chUuid",auth,CheckListController.selectOne);
 route.get("/checklist/selectall",auth,CheckListController.selectAll);
 route.get("/checklist/selectbyclassdetail/:cdUuid",auth,CheckListController.selectByClassDetailID);
+route.get("/checklist/selectbyclassdetailanddate/:cdUuid/:date",auth,CheckListController.selectByClassDetailIDAndDate);
 route.post("/checklist/insert",auth,CheckListController.insert);
+route.post("/checklist/multiinsert",auth,CheckListController.multiInsert);
 route.put("/checklist/update/:chUuid",auth,CheckListController.updateCheckList);
 route.delete("/checklist/delete/:chUuid",auth,CheckListController.deleteCheckList);
 //======== subject ======
@@ -81,7 +83,7 @@ route.delete("/class/delete/:cUuid",auth,ClassController.deleteClass);
 route.get("/classdetail/selectall",ClassDetailController.selectAll);
 route.get("/classdetail/selectone/:class_id",ClassDetailController.selectOne);
 route.get("/classdetail/selectbyclassid/:cUuid",auth,ClassDetailController.selectByClassID);
-route.get("/classdetail/selectbyfilter/:cUuid/:mUuid",auth,ClassDetailController.selectByFilter);
+route.post("/classdetail/selectbyfilter",auth,ClassDetailController.selectByFilter);
 route.post("/classdetail/insert",auth,ClassDetailController.insert);
 route.put("/classdetail/update/:cdUuid",auth,ClassDetailController.updateClassDetail);
 route.delete("/classdetail/delete/:cdUuid",auth,ClassDetailController.deleteClassDetail);
