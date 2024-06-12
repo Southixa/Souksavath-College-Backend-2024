@@ -9,10 +9,10 @@ import mysql from "mysql";
 // });
 
 var con = mysql.createConnection({
-  host: "mysql-174793-0.cloudclusters.net",
+  host: "mysql-175461-0.cloudclusters.net",
   user: "admin",
-  password: "XSspnA5R",
-  port: "19990",
+  password: "QUmeABbz",
+  port: "10020",
   database: "finalproject2024",
   timezone: 'Z'
 });

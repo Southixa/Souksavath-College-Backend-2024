@@ -14,7 +14,7 @@ import {auth} from "../middleware/auth.middleware.js";
 const route = express.Router();
 //========= auth =======
 route.post("/user/register",UserController.register);
-route.post("/user/addRole",UserController.addRole);
+route.post("/user/addUser",UserController.addUser);
 route.post("/user/login",UserController.login);
 route.put("/user/forgot",UserController.forgotPassword)
 route.put("/user/changepassword",auth,UserController.changePassword)

@@ -93,7 +93,7 @@ export default class UserController {
     }
   };
 
-  static addRole = async (req, res) => {
+  static addUser = async (req, res) => {
     try {
       const { email, password, role } = req.body;
       const validate = await ValidateData({ email, password, role });
