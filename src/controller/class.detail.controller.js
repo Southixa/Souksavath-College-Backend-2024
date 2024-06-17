@@ -6,7 +6,7 @@ import { v4 as uuid } from "uuid";
 export default class ClassDetailController {
   static selectAll = async (req, res) => {
     try {
-      // const mysql = `SELECT class_detail.cdID,class_detail.cdUuid,class.cUuid,class.cName,termNo,year.schoolyear,student.sID,student.sName,student.sSurname,major.mName,part.pName,subject.subName,subTime,teacher.tName,teacher.tSurname,teacher.tel,teacher.tType,class_detail.createdAt,class_detail.updatedAt
+      // const mysql = `SELECT class_detail.cdID,class_detail.cdUuid,class.cUuid,class.cName,termNo,year.schoolyear,student.sID,student.sName,student.sSurname,major.mName,part.pName,subject.subName,teacher.tName,teacher.tSurname,teacher.tel,teacher.tType,class_detail.createdAt,class_detail.updatedAt
       // FROM class_detail
 
       // INNER JOIN class ON class_detail.class_id = class.cUuid
@@ -35,7 +35,7 @@ export default class ClassDetailController {
       if (!cdUuid) {
         return sendError(res, 400, "class id is reqiured!");
       }
-      // const mysql = `SELECT class_detail.cdID,class_detail.cdUuid,class.cName,termNo,year.schoolyear,student.sID,student.sName,student.sSurname,major.mName,part.pName,subject.subName,subTime,teacher.tName,teacher.tSurname,teacher.tel,teacher.tType,class_detail.createdAt,class_detail.updatedAt
+      // const mysql = `SELECT class_detail.cdID,class_detail.cdUuid,class.cName,termNo,year.schoolyear,student.sID,student.sName,student.sSurname,major.mName,part.pName,subject.subName,teacher.tName,teacher.tSurname,teacher.tel,teacher.tType,class_detail.createdAt,class_detail.updatedAt
       // FROM class_detail
       // INNER JOIN class ON class_detail.class_id = class.cUuid 
       // INNER JOIN year ON class.year_id = year.yUuid 
@@ -63,7 +63,7 @@ export default class ClassDetailController {
       if (!cUuid) {
         return sendError(res, 400, "class id is reqiured!");
       }
-      const mysql = `SELECT class_detail.cdID,class_detail.cdUuid,class.cName,termNo,year.schoolyear,student.sID,student.sName,student.sSurname,major.mName,part.pName,subject.subName,subTime,teacher.tName,teacher.tSurname,teacher.tel,teacher.tType,class_detail.createdAt,class_detail.updatedAt
+      const mysql = `SELECT class_detail.cdID,class_detail.cdUuid,class.cName,termNo,year.schoolyear,student.sID,student.sName,student.sSurname,major.mName,part.pName,subject.subName,teacher.tName,teacher.tSurname,teacher.tel,teacher.tType,class_detail.createdAt,class_detail.updatedAt
       FROM class_detail
       INNER JOIN class ON class_detail.class_id = class.cUuid 
       INNER JOIN year ON class.year_id = year.yUuid 
@@ -90,7 +90,7 @@ export default class ClassDetailController {
       if (vaildate.length > 0) {
         return sendError(res, 400, EMessage.PleaseInput + vaildate.join(","));
       }
-      const mysql = `SELECT class_detail.cdID,class_detail.cdUuid,class.cName,termNo,year.schoolyear,student.sID,student.sName,student.sSurname,major.mName,part.pName,subject.subName,subTime,teacher.tName,teacher.tSurname,teacher.tel,teacher.tType,class_detail.createdAt,class_detail.updatedAt
+      const mysql = `SELECT class_detail.cdID,class_detail.cdUuid,class.cName,termNo,year.schoolyear,student.sID,student.sName,student.sSurname,major.mName,part.pName,subject.subName,teacher.tName,teacher.tSurname,teacher.tel,teacher.tType,class_detail.createdAt,class_detail.updatedAt
       FROM class_detail
       INNER JOIN class ON class_detail.class_id = class.cUuid 
       INNER JOIN year ON class.year_id = year.yUuid 

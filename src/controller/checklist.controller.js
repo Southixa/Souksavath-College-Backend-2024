@@ -6,7 +6,7 @@ import { ValidateData } from "../service/vaildate.js";
 export default class CheckListController {
   static selectAll = async (req, res) => {
     try {
-      const mysql = `SELECT checklist.chID,checklist.chUuid,class.cName,year.schoolyear,termNo,student.sID,student.sName,student.sSurname,major.mName,part.pName,subject.subName,subTime,teacher.tName,teacher.tSurname,teacher.tType,checklist.class_detail_id,checklist.status,checklist.reson,checklist.createdAt,checklist.updatedAt,checklist.hourAt,checklist.date
+      const mysql = `SELECT checklist.chID,checklist.chUuid,class.cName,year.schoolyear,termNo,student.sID,student.sName,student.sSurname,major.mName,part.pName,subject.subName,teacher.tName,teacher.tSurname,teacher.tType,checklist.class_detail_id,checklist.status,checklist.reson,checklist.createdAt,checklist.updatedAt,checklist.hourAt,checklist.date
       FROM checklist
       INNER JOIN class_detail ON checklist.class_detail_id = class_detail.cdUuid 
       INNER JOIN class ON class_detail.class_id = class.cUuid 
@@ -31,7 +31,7 @@ export default class CheckListController {
       if (!chUuid) {
         return sendError(res, 400, "checklist is reqiured!");
       }
-      const mysql = `SELECT checklist.chID,checklist.chUuid,class.cName,year.schoolyear,termNo,student.sID,student.sName,student.sSurname,major.mName,part.pName,subject.subName,subTime,teacher.tName,teacher.tSurname,teacher.tType,checklist.class_detail_id,checklist.status,checklist.reson,checklist.createdAt,checklist.updatedAt,checklist.hourAt,checklist.date
+      const mysql = `SELECT checklist.chID,checklist.chUuid,class.cName,year.schoolyear,termNo,student.sID,student.sName,student.sSurname,major.mName,part.pName,subject.subName,teacher.tName,teacher.tSurname,teacher.tType,checklist.class_detail_id,checklist.status,checklist.reson,checklist.createdAt,checklist.updatedAt,checklist.hourAt,checklist.date
       FROM checklist
       INNER JOIN class_detail ON checklist.class_detail_id = class_detail.cdUuid 
       INNER JOIN class ON class_detail.class_id = class.cUuid 
@@ -60,7 +60,7 @@ export default class CheckListController {
       if (!cdUuid) {
         return sendError(res, 400, "checklist is reqiured!");
       }
-      const mysql = `SELECT checklist.chID,checklist.chUuid,class.cName,year.schoolyear,termNo,student.sID,student.sName,student.sSurname,major.mName,part.pName,subject.subName,subTime,teacher.tName,teacher.tSurname,teacher.tType,checklist.class_detail_id,checklist.status,checklist.reson,checklist.createdAt,checklist.updatedAt,checklist.hourAt,checklist.date
+      const mysql = `SELECT checklist.chID,checklist.chUuid,class.cName,year.schoolyear,termNo,student.sID,student.sName,student.sSurname,major.mName,part.pName,subject.subName,teacher.tName,teacher.tSurname,teacher.tType,checklist.class_detail_id,checklist.status,checklist.reson,checklist.createdAt,checklist.updatedAt,checklist.hourAt,checklist.date
       FROM checklist
       INNER JOIN class_detail ON checklist.class_detail_id = class_detail.cdUuid 
       INNER JOIN class ON class_detail.class_id = class.cUuid 
@@ -89,7 +89,7 @@ export default class CheckListController {
       if (vaildate.length > 0) {
         return sendError(res, 400, EMessage.PleaseInput + vaildate.join(","));
       }
-      const mysql = `SELECT checklist.chID,checklist.chUuid,class.cName,year.schoolyear,termNo,student.sID,student.sName,student.sSurname,major.mName,part.pName,subject.subName,subTime,teacher.tName,teacher.tSurname,teacher.tType,checklist.class_detail_id,checklist.status,checklist.reson,checklist.createdAt,checklist.updatedAt,checklist.hourAt,checklist.date
+      const mysql = `SELECT checklist.chID,checklist.chUuid,class.cName,year.schoolyear,termNo,student.sID,student.sName,student.sSurname,major.mName,part.pName,subject.subName,teacher.tName,teacher.tSurname,teacher.tType,checklist.class_detail_id,checklist.status,checklist.reson,checklist.createdAt,checklist.updatedAt,checklist.hourAt,checklist.date
       FROM checklist
       INNER JOIN class_detail ON checklist.class_detail_id = class_detail.cdUuid 
       INNER JOIN class ON class_detail.class_id = class.cUuid 

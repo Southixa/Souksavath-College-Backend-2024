@@ -6,7 +6,7 @@ import { v4 as uuid } from "uuid";
 export default class SubjectController {
   static selectAll = async (req, res) => {
     try {
-      const mysql = `SELECT subject.subID,subject.subUuid,subject.subName,subject.subTime,teacher.tID, teacher.tType,teacher.tName,teacher.tSurname,teacher.tel,subject.createdAt,subject.updatedAt
+      const mysql = `SELECT subject.subID,subject.subUuid,subject.subName,teacher.tID, teacher.tType,teacher.tName,teacher.tSurname,teacher.tel,subject.createdAt,subject.updatedAt
       FROM subject
       INNER JOIN teacher ON subject.teacher_id = teacher.tUuid`;
       con.query(mysql, function (err, result) {
@@ -25,11 +25,11 @@ export default class SubjectController {
       }
 
     //   const mysql = `select sub.*, t.* from subject sub
-    // inner join (select subID,subUuid,subName,subTime,tID,tType,tName,tSurname,tel,from teacher) t
+    // inner join (select subID,subUuid,subName,tID,tType,tName,tSurname,tel,from teacher) t
     // on sub.teacher_id = t.tUuid`;
-    const mysql =`SELECT subject.subID,subject.subUuid,subject.subName,subject.subTime,teacher.tID, teacher.tType,teacher.tName,teacher.tSurname,teacher.tel,subject.createdAt,subject.updatedAt
+    const mysql =`SELECT subject.subID,subject.subUuid,subject.subName,teacher.tID, teacher.tType,teacher.tName,teacher.tSurname,teacher.tel,teacher.tUuid,subject.createdAt,subject.updatedAt
     FROM subject
-    INNER JOIN teacher ON subject.teacher_id = teacher.tUuid`;
+    INNER JOIN teacher ON subject.teacher_id = teacher.tUuid WHERE subUuid = ?`;
       con.query(mysql, subjectId, function (err, result) {
         if (err) return sendError(res, 500, EMessage.server, err);
         return sendSuccess(res, SMessage.selectOne, result[0]);
@@ -41,8 +41,8 @@ export default class SubjectController {
 
   static insert = async (req, res) => {
     try {
-      const { subName, subTime, teacher_id } = req.body;
-      const vaildate = await ValidateData({ subName, subTime, teacher_id });
+      const { subName, teacher_id } = req.body;
+      const vaildate = await ValidateData({ subName, teacher_id });
       if (vaildate.length > 0) {
         return sendError(res, 400, EMessage.PleaseInput + vaildate.join(","));
       }
@@ -58,12 +58,14 @@ export default class SubjectController {
           .replace(/T/, " ") // replace T with a space
           .replace(/\..+/, "");
         const mysql =
-          "insert into subject (subUuid,subName,subTime,teacher_id,createdAt,updatedAt) values (?,?,?,?,?,?)";
+          "insert into subject (subUuid,subName,teacher_id,createdAt,updatedAt) values (?,?,?,?,?)";
         con.query(
           mysql,
-          [subUuid, subName, subTime, teacher_id, date, date],
+          [subUuid, subName, teacher_id, date, date],
           function (err) {
-            if (err) return sendError(res, 500, EMessage.server, err);
+            if (err) {
+              return sendError(res, 500, EMessage.server, err)
+            };
             return sendCreate(res, SMessage.insert);
           }
         );
@@ -79,8 +81,8 @@ export default class SubjectController {
         return sendError(res, 400, "subject params is required");
       }
 
-      const { subName, subTime, teacher_id } = req.body;
-      const validate = await ValidateData({ subName, subTime, teacher_id });
+      const { subName, teacher_id } = req.body;
+      const validate = await ValidateData({ subName, teacher_id });
       if (validate.length > 0) {
         return sendError(res, 400, EMessage.PleaseInput + validate.join(","));
       }
@@ -103,11 +105,11 @@ export default class SubjectController {
             .replace(/T/, " ") // replace T with a space
             .replace(/\..+/, "");
           const mysql =
-            "update subject set subName =?,subTime=?,teacher_id=?,updatedAt=? where subUuid=?";
+            "update subject set subName =?,teacher_id=?,updatedAt=? where subUuid=?";
 
           con.query(
             mysql,
-            [subName, subTime, teacher_id, date, subUuid],
+            [subName, teacher_id, date, subUuid],
             function (err) {
               if (err) return sendError(res, 404, "Error Update Subject");
               return sendCreate(res, SMessage.update);
